@@ -1,0 +1,19 @@
+# Keep line endings consistent for everyone, on every machine.
+# Inside the repository every text file is stored with LF.
+# On Windows, git still gives you CRLF in your working copy.
+
+* text=auto
+
+# Be explicit about the file types in this project.
+*.md    text
+*.txt   text
+*.json  text
+*.yml   text
+*.yaml  text
+
+# Images are binary. Git must never touch their bytes.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
