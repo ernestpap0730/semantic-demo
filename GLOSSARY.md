@@ -144,3 +144,72 @@ One line each. Newest terms get added as we go.
 | **Spot-check** | A human checking a sample of results by hand, instead of checking all of them. |
 | **Commute-aware ranking** | The next planned feature. Listings closer to the metro or park the renter asked for rank higher. |
 | **Fallback** | What the system does when something fails. Here: if meaning times out, rank by keywords alone. |
+
+## Team, process and code terms (from the Jira, GitHub and repo screenshots)
+
+| Term | Plain meaning |
+|---|---|
+| **Epic** | A big job split into several tickets. RN-5120 "Ranking and meaning" is the epic. |
+| **Ticket** | One unit of work, with an ID like RN-5124. Also called an issue or a story. |
+| **Sprint** | A fixed period of work, usually two weeks. |
+| **Story points** | A rough guess of how much effort a ticket takes. |
+| **Blocked** | This ticket cannot start until another one finishes. |
+| **Backlog** | The list of tickets not started yet. |
+| **Pull request (PR)** | A request to merge your code into the main codebase. Others review it first. |
+| **Commit** | One saved change, with a message explaining it. |
+| **Peer review** | Another developer reading your code before it gets merged. |
+| **QA** | "Quality Assurance". People who test the feature before release. |
+| **CI** | "Continuous Integration". A robot that runs all the tests on every change. |
+| **Baseline** | The old way of doing it. The new way must beat it. |
+| **Kill switch** | A setting that instantly turns a feature off, with no code deploy. |
+| **Rollout percentage** | Showing a new feature to only some users. 5% first, then more. |
+| **nDCG@10** | A score from 0 to 1 for how good a top-10 list is. Good matches near the top count most. |
+| **P@5** | The share of the top 5 results judged relevant. |
+| **Sign test** | A maths check that your win count is real and not just luck. |
+| **Jev** | An AI model the team uses for yes/no questions only. Used in the "no carpets" fix. |
+| **Stemmer** | Code that cuts words down to a root. PostgreSQL's reads "parking" as "park", which caused a real bug. |
+| **LATERAL** | A SQL technique for running a small lookup once per row. |
+| **Cron** | A job that runs automatically on a schedule. |
+| **Backfill** | A one-off job that fills in data for everything that already exists. |
+| **Bastion** | A locked-down server you connect through to reach production systems. |
+| **kubectl** | The command-line tool for running things on a Kubernetes server. |
+| **Kubernetes** | Software that runs and manages many copies of an app across servers. |
+| **Pod** | One running copy of the app inside Kubernetes. |
+| **ArgoCD** | A tool that reads settings from a git repo and applies them to the servers. |
+| **SSR** | "Server-side rendering". Building the page HTML on the server, not in the browser. |
+| **GraphQL** | A way for the website to ask the API for exactly the data it needs, no more. |
+| **Rust** | A fast programming language. The `rentals_ai_search_rs` service uses it. |
+| **Cosine similarity** | The maths that measures how close two number lists are. |
+| **Epic parent** | The bigger ticket that a smaller ticket belongs to. |
+
+## Infrastructure and architecture terms (from the workflow screenshots)
+
+| Term | Plain meaning |
+|---|---|
+| **Pod** | One running copy of an app inside Kubernetes. |
+| **Writer / reader** | The main database, and a read-only copy of it. Reading from the reader takes load off the writer. |
+| **Aurora** | Amazon's managed PostgreSQL. The whole site runs on one. |
+| **Materialized view** | A saved, pre-computed query result. Fast to read, but must be rebuilt to stay fresh. |
+| **ASGI** | The modern Python way of serving web requests. Allows async. |
+| **uvicorn** | The program that actually runs a Python web app. |
+| **Island** | A small live component (here, Vue) on an otherwise plain HTML page. |
+| **WAF** | "Web Application Firewall". Blocks malicious requests at the edge. |
+| **Edge** | Servers close to the user that cache pages. Cloudflare is the edge here. |
+| **Edge cache** | Cloudflare's stored copy of a finished page, served without touching our servers. |
+| **Fragment cache** | A cached *piece* of a page, not the whole page. |
+| **Connection pooler** | Software that shares a few database connections among many apps. |
+| **Advisory lock** | A Postgres flag making sure only one copy of a job runs at a time. |
+| **Typeahead** | The suggestions that appear as you type in a search box. |
+| **bbox** | "Bounding box". The map rectangle you are currently looking at. |
+| **Circuit breaker** | After N failures in a row, stop calling a service for a while. |
+| **Terraform** | Code that describes your servers, so they can be rebuilt reliably. |
+| **CronJob** | A Kubernetes job that runs on a schedule. |
+| **AI Gateway** | One entry point in front of several AI providers. Gives logging, caching and easy swaps. |
+| **Stopword** | A tiny word that search engines ignore, like "the" or "no". |
+| **Prompt injection** | Text written by an outsider that tries to hijack an AI's instructions. |
+| **Classifier** | A model that picks from fixed answers instead of writing free text. |
+| **Demote** | Push a listing to the bottom of its group. Not hidden, just last. |
+| **Negation guard** | Fixed rules that undo a filter the AI turned the wrong way round. |
+| **Perk** | Something a renter can do without ("no parking"). Not treated as a thing to avoid. |
+| **OpenTelemetry** | An open standard for sending metrics and traces out of an app. |
+| **Sentry** | A service that records crashes so developers can see them. Off in production here. |
